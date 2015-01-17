@@ -46,22 +46,22 @@ func currentRoom(player: Player) {
 // game logic
 
 var rooms = [
-    Room(roomID: 0, roomType: .Empty, roomUp: nil, roomDown: 5, roomLeft: nil, roomRight: 2),
-    Room(roomID: 1, roomType: .Empty, roomUp: nil, roomDown: 6, roomLeft: 1, roomRight: 3),
-    Room(roomID: 2, roomType: .Empty, roomUp: nil, roomDown: 7, roomLeft: 2, roomRight: 4),
-    Room(roomID: 3, roomType: .Empty, roomUp: nil, roomDown: 8, roomLeft: 3, roomRight: nil),
-    Room(roomID: 4, roomType: .Empty, roomUp: 1, roomDown: 9, roomLeft: nil, roomRight: 6),
-    Room(roomID: 5, roomType: .Empty, roomUp: 2, roomDown: 10, roomLeft: 5, roomRight: 7),
-    Room(roomID: 6, roomType: .Empty, roomUp: 3, roomDown: 11, roomLeft: 6, roomRight: 8),
-    Room(roomID: 7, roomType: .Empty, roomUp: 4, roomDown: 12, roomLeft: 7, roomRight: nil),
-    Room(roomID: 8, roomType: .Empty, roomUp: 5, roomDown: 13, roomLeft: nil, roomRight: 10),
-    Room(roomID: 9, roomType: .Empty, roomUp: 6, roomDown: 14, roomLeft: 9, roomRight: 11),
-    Room(roomID: 10, roomType: .Empty, roomUp: 7, roomDown: 15, roomLeft: 10, roomRight: 12),
-    Room(roomID: 11, roomType: .Empty, roomUp: 8, roomDown: 16, roomLeft: 11, roomRight: nil),
-    Room(roomID: 12, roomType: .Empty, roomUp: 9, roomDown: nil, roomLeft: nil, roomRight: 14),
-    Room(roomID: 13, roomType: .Empty, roomUp: 10, roomDown: nil, roomLeft: 9, roomRight: 15),
-    Room(roomID: 14, roomType: .Empty, roomUp: 11, roomDown: nil, roomLeft: 10, roomRight: 16),
-    Room(roomID: 15, roomType: .Empty, roomUp: 12, roomDown: nil, roomLeft: 11, roomRight: nil),
+    Room(roomID: 0, roomType: .Empty, roomUp: nil, roomDown: 4, roomLeft: nil, roomRight: 1),
+    Room(roomID: 1, roomType: .Empty, roomUp: nil, roomDown: 5, roomLeft: 0, roomRight: 2),
+    Room(roomID: 2, roomType: .Empty, roomUp: nil, roomDown: 6, roomLeft: 1, roomRight: 3),
+    Room(roomID: 3, roomType: .Empty, roomUp: nil, roomDown: 7, roomLeft: 2, roomRight: nil),
+    Room(roomID: 4, roomType: .Empty, roomUp: 0, roomDown: 8, roomLeft: nil, roomRight: 5),
+    Room(roomID: 5, roomType: .Empty, roomUp: 1, roomDown: 9, roomLeft: 4, roomRight: 6),
+    Room(roomID: 6, roomType: .Empty, roomUp: 2, roomDown: 10, roomLeft: 5, roomRight: 7),
+    Room(roomID: 7, roomType: .Empty, roomUp: 3, roomDown: 11, roomLeft: 6, roomRight: nil),
+    Room(roomID: 8, roomType: .Empty, roomUp: 4, roomDown: 12, roomLeft: nil, roomRight: 9),
+    Room(roomID: 9, roomType: .Empty, roomUp: 5, roomDown: 13, roomLeft: 8, roomRight: 10),
+    Room(roomID: 10, roomType: .Empty, roomUp: 6, roomDown: 14, roomLeft: 9, roomRight: 11),
+    Room(roomID: 11, roomType: .Empty, roomUp: 7, roomDown: 15, roomLeft: 10, roomRight: nil),
+    Room(roomID: 12, roomType: .Empty, roomUp: 8, roomDown: nil, roomLeft: nil, roomRight: 13),
+    Room(roomID: 13, roomType: .Empty, roomUp: 9, roomDown: nil, roomLeft: 12, roomRight: 14),
+    Room(roomID: 14, roomType: .Empty, roomUp: 10, roomDown: nil, roomLeft: 13, roomRight: 15),
+    Room(roomID: 15, roomType: .Empty, roomUp: 11, roomDown: nil, roomLeft: 14, roomRight: nil),
 ]
 
 rooms.count
@@ -111,6 +111,20 @@ setupRooms(&rooms, &player)
 
 player.currentRoom
 
+func whatHappensInNewRoom (inout player: Player, room: Room) {
+    if room.roomType == .Treasure {
+        println("You found the treasure!  Game Won!")
+    } else if room.roomType == .Cube {
+        if player.health == 1 {
+            println("GAME OVER - Your are out of health")
+        } else {
+            player.health -= 1
+            println("Oh no!  You found the cube and lost health.  Your health is now \(player.health)")
+        }
+    } else {
+        println("You found an empty room, time to move again")
+    }
+}
 
 func moveToRoom(inout player: Player, rooms: [Room]) {
     var currentRoom = player.currentRoom!
@@ -133,7 +147,6 @@ func moveToRoom(inout player: Player, rooms: [Room]) {
         possibleRoom4
         possibleRooms.append(possibleRoom4)
     }
-    possibleRooms
     println("You can move to one of the following Rooms")
     for room in possibleRooms {
         print("\(room) ")
@@ -146,9 +159,16 @@ func moveToRoom(inout player: Player, rooms: [Room]) {
     
     // Determine what happens in new room
     
+    whatHappensInNewRoom(&player, possibleRooms[newRoom])
+    
 }
 
 moveToRoom(&player, rooms)
+
+
+
+
+
 
 
 

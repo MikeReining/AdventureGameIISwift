@@ -41,6 +41,7 @@
 		27FC4AC51A6B12BD00F28A2C /* AdventureGameI.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = AdventureGameI.playground; sourceTree = "<group>"; };
 		27FC4AC61A6B12E600F28A2C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		27FC4AC81A6B12EC00F28A2C /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		27FC4ACA1A6B1F2200F28A2C /* CheckersGame.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CheckersGame.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +91,7 @@
 				27FC4AAC1A6B129E00F28A2C /* Images.xcassets */,
 				27FC4AAE1A6B129E00F28A2C /* LaunchScreen.xib */,
 				27FC4AC51A6B12BD00F28A2C /* AdventureGameI.playground */,
+				27FC4ACA1A6B1F2200F28A2C /* CheckersGame.playground */,
 				27FC4AA31A6B129E00F28A2C /* Supporting Files */,
 			);
 			path = AdventureGameII;
@@ -415,6 +417,7 @@
 				27FC4AC11A6B129E00F28A2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27FC4AC21A6B129E00F28A2C /* Build configuration list for PBXNativeTarget "AdventureGameIITests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +426,7 @@
 				27FC4AC41A6B129E00F28A2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
