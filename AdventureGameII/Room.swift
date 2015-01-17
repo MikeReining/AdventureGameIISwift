@@ -24,7 +24,7 @@ enum RoomType {
         case Empty:
             return "EMPTY"
         case Treasure:
-            return "TREASURE:"
+            return "TREASURE"
         case Cube:
             return "CUBE"
         }
