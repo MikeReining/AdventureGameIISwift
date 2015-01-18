@@ -1,6 +1,6 @@
 import Foundation
 
-
+// MARK: Setup Objects, Enums, and Structs
 
 struct GameBoard {
     let rows: Int, columns: Int
@@ -35,6 +35,17 @@ enum SquareType: String {
     }
 }
 
+struct Player {
+    var currentRoom: Int?
+    var health = 2
+}
+
+// MARK: Setup Initial Game
+// Setup Player
+var player = Player(currentRoom: nil, health: 2)
+
+// Setup Game Board
+
 var defaultSquare = SquareType(rawValue: "-")
 var gameBoard = GameBoard(rows: 4, columns: 4, squareType: defaultSquare!)
 
@@ -54,56 +65,71 @@ func setupGameBoard() -> (Int,Int,Int) {
     }
     
     // Add player to random room
-    var squareWithPlayer = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
-    while squareWithPlayer == squareWithTreasure || squareWithPlayer == squareWithCube {
-        squareWithPlayer = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
+    player.currentRoom = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
+    while  player.currentRoom == squareWithTreasure || player.currentRoom == squareWithCube {
+         player.currentRoom = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
     }
-    return (squareWithTreasure, squareWithCube, squareWithPlayer)
+    return (squareWithTreasure, squareWithCube,  player.currentRoom!)
 }
 
+let treasureRoom = setupGameBoard().0
+let cubeRoom = setupGameBoard().1
+var playerPosition = setupGameBoard().2
+var allowedMoves = [Int]()
 
-setupGameBoard().0
+// MARK: Setup Game Logic Functions
 
-// Figure out where player can move to
-
-func playerCanMoveTo(playerPosition: Int) -> (Int?,Int?,Int?,Int?) {
+func playerCanMoveTo(playerPosition: Int) -> [Int] {
     // Can move right? (forward by 1?)
-    var playerCanMoveRightTo: Int?
-    var playerCanMoveLeftTo: Int?
-    var playerCanMoveDownTo: Int?
-    var playerCanMoveUpTo: Int?
 
-    var playerCanMoveRight: Bool = false
     if playerPosition < gameBoard.grid.count {
-        playerCanMoveRight = true
-        playerCanMoveRightTo = playerPosition + 1
+        allowedMoves.append(playerPosition + 1)
     }
     
     // Can move left (backwards by 1?)
-    var playerCanMoveLeft: Bool = false
     if playerPosition > 1 {
-        playerCanMoveLeft = true
-        playerCanMoveLeftTo = playerPosition - 1
+        allowedMoves.append(playerPosition - 1)
     }
 
     // Can move down one row
-    var playerCanMoveDown: Bool = false
     if playerPosition <= (gameBoard.grid.count - gameBoard.columns) {
-        playerCanMoveDown = true
-        playerCanMoveDownTo = playerPosition + gameBoard.columns
+        allowedMoves.append(playerPosition + gameBoard.columns)
     }
  
     // Can move up one row
-    var playerCanMoveUp: Bool = false
     if playerPosition > (gameBoard.grid.count - gameBoard.columns) {
-        playerCanMoveUp = true
-        playerCanMoveUpTo = playerPosition - gameBoard.columns
+        allowedMoves.append(playerPosition - gameBoard.columns)
     }
-    return (playerCanMoveRightTo,playerCanMoveLeftTo,playerCanMoveDownTo,playerCanMoveUpTo)
+    return allowedMoves
 }
 
-playerCanMoveTo(setupGameBoard().2).0
+func moveIsAllowed (allowedMoves: [Int], moveTo: Int) -> Bool {
+    for (index, value) in enumerate(allowedMoves) {
+        if value == moveTo {
+            println("Move valid, you are moving to room #: \(moveTo)")
+            return true
+        }
+    }
+    println("Invalid Move.  You cannot move to room #: \(moveTo)")
+    return false
+}
 
+func movePlayerTo(room:Int) {
+    // Check if move is valid
+    if moveIsAllowed(allowedMoves, room) {
+        for room in allowedMoves {
+            if room == treasureRoom {
+                println("YOU WIN - TREASURE FOUND!")
+            }
+            if room == cubeRoom && player.health == 1 {
+                println("GAME OVER - You Lost this round")
+            } else if room == cubeRoom && player.health > 1 {
+                println("You stepped on the cube and lost half of your health")
+                player.health -= 1
+            }
+        }
+    }
+}
 
 
 
