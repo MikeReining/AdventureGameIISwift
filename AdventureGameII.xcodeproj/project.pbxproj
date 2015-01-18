@@ -14,7 +14,6 @@
 		27FC4AB01A6B129E00F28A2C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FC4AAE1A6B129E00F28A2C /* LaunchScreen.xib */; };
 		27FC4ABC1A6B129E00F28A2C /* AdventureGameIITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC4ABB1A6B129E00F28A2C /* AdventureGameIITests.swift */; };
 		27FC4AC71A6B12E600F28A2C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC4AC61A6B12E600F28A2C /* Player.swift */; };
-		27FC4AC91A6B12EC00F28A2C /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC4AC81A6B12EC00F28A2C /* Room.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2715DE2F1A6B855A00AF1182 /* AdventureGameII.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = AdventureGameII.playground; sourceTree = "<group>"; };
 		27CB6F921A6B5414000E9E3C /* MatrixGridGenerator.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MatrixGridGenerator.playground; sourceTree = "<group>"; };
 		27FC4AA01A6B129E00F28A2C /* AdventureGameII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdventureGameII.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FC4AA41A6B129E00F28A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,7 +41,6 @@
 		27FC4ABB1A6B129E00F28A2C /* AdventureGameIITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureGameIITests.swift; sourceTree = "<group>"; };
 		27FC4AC51A6B12BD00F28A2C /* AdventureGameI.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = AdventureGameI.playground; sourceTree = "<group>"; };
 		27FC4AC61A6B12E600F28A2C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		27FC4AC81A6B12EC00F28A2C /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		27FC4ACA1A6B1F2200F28A2C /* CheckersGame.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CheckersGame.playground; sourceTree = "<group>"; };
 		27FC4ACB1A6B4C5C00F28A2C /* ScratchPad.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ScratchPad.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +63,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2715DE301A6B856A00AF1182 /* Playgrounds Practice */ = {
+			isa = PBXGroup;
+			children = (
+				27FC4ACA1A6B1F2200F28A2C /* CheckersGame.playground */,
+				27CB6F921A6B5414000E9E3C /* MatrixGridGenerator.playground */,
+				27FC4ACB1A6B4C5C00F28A2C /* ScratchPad.playground */,
+				27FC4AC51A6B12BD00F28A2C /* AdventureGameI.playground */,
+			);
+			name = "Playgrounds Practice";
+			sourceTree = "<group>";
+		};
 		27FC4A971A6B129E00F28A2C = {
 			isa = PBXGroup;
 			children = (
@@ -85,17 +95,14 @@
 		27FC4AA21A6B129E00F28A2C /* AdventureGameII */ = {
 			isa = PBXGroup;
 			children = (
+				2715DE2F1A6B855A00AF1182 /* AdventureGameII.playground */,
 				27FC4AA51A6B129E00F28A2C /* AppDelegate.swift */,
 				27FC4AA71A6B129E00F28A2C /* ViewController.swift */,
 				27FC4AA91A6B129E00F28A2C /* Main.storyboard */,
 				27FC4AC61A6B12E600F28A2C /* Player.swift */,
-				27FC4AC81A6B12EC00F28A2C /* Room.swift */,
 				27FC4AAC1A6B129E00F28A2C /* Images.xcassets */,
 				27FC4AAE1A6B129E00F28A2C /* LaunchScreen.xib */,
-				27FC4AC51A6B12BD00F28A2C /* AdventureGameI.playground */,
-				27FC4ACA1A6B1F2200F28A2C /* CheckersGame.playground */,
-				27CB6F921A6B5414000E9E3C /* MatrixGridGenerator.playground */,
-				27FC4ACB1A6B4C5C00F28A2C /* ScratchPad.playground */,
+				2715DE301A6B856A00AF1182 /* Playgrounds Practice */,
 				27FC4AA31A6B129E00F28A2C /* Supporting Files */,
 			);
 			path = AdventureGameII;
@@ -228,7 +235,6 @@
 			files = (
 				27FC4AA81A6B129E00F28A2C /* ViewController.swift in Sources */,
 				27FC4AC71A6B12E600F28A2C /* Player.swift in Sources */,
-				27FC4AC91A6B12EC00F28A2C /* Room.swift in Sources */,
 				27FC4AA61A6B129E00F28A2C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

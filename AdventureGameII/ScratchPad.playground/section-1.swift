@@ -47,37 +47,40 @@ var player = Player(currentRoom: nil, health: 2)
 // Setup Game Board
 
 var defaultSquare = SquareType(rawValue: "-")
-var gameBoard = GameBoard(rows: 4, columns: 4, squareType: defaultSquare!)
+var gameBoard = GameBoard(rows: 3, columns: 3, squareType: defaultSquare!)
 
 gameBoard.grid.count
 gameBoard.squareType.description
 
 // Setup Grid
+var squareWithTreasure: Int?
+var squareWithCube: Int?
+
+
 
 func setupGameBoard() -> (Int,Int,Int) {
     // Add Treasure to random room
-    var squareWithTreasure = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
+    squareWithTreasure = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
     while squareWithTreasure == 0 {
         squareWithTreasure = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
     }
     
     // Add cube to random room
-    var squareWithCube = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
+    squareWithCube = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
     while squareWithCube == squareWithTreasure {
         squareWithCube = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
     }
     
-    // Add player to random room
+    // Add player to random room (BUG player ended in cube room.
     player.currentRoom = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
     while  player.currentRoom == squareWithTreasure || player.currentRoom == squareWithCube || player.currentRoom == 0 {
          player.currentRoom = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
     }
-    return (squareWithTreasure, squareWithCube,  player.currentRoom!)
+    return (squareWithTreasure!, squareWithCube!,  player.currentRoom!)
 }
 
-let treasureRoom = setupGameBoard().0
-let cubeRoom = setupGameBoard().1
-player.currentRoom! = setupGameBoard().2
+setupGameBoard()
+
 var allowedMoves = [Int]()
 
 // MARK: Setup Game Logic Functions
@@ -90,7 +93,7 @@ func playerCanMoveTo(playerPosition: Int) -> [Int] {
     }
     
     // Can move left ⬅︎ (backwards by 1?)
-    if playerPosition > 1 && ((playerPosition + 3) % gameBoard.columns != 0){
+    if playerPosition > 1 && ((playerPosition + gameBoard.columns - 1) % gameBoard.columns != 0){
         allowedMoves.append(playerPosition - 1)
     }
 
@@ -117,25 +120,32 @@ func moveIsAllowed (allowedMoves: [Int], moveTo: Int) -> Bool {
     return false
 }
 
-func movePlayerTo(room:Int) {
+func movePlayerTo(moveToRoom:Int) {
     // Check if move is valid
-    if moveIsAllowed(allowedMoves, room) {
-        player.currentRoom = room
+    if moveIsAllowed(allowedMoves,moveToRoom) {
+        player.currentRoom = moveToRoom
         for room in allowedMoves {
-            if room == treasureRoom {
+            if room == squareWithTreasure && room == moveToRoom {
                 println("YOU WIN - TREASURE FOUND!")
             }
-            if room == cubeRoom && player.health == 1 {
+            if room == squareWithCube && room == moveToRoom && player.health == 1 {
                 println("GAME OVER - You Lost this round")
-            } else if room == cubeRoom && player.health > 1 {
+            } else if room == squareWithCube && room == moveToRoom && player.health > 1 {
                 println("You stepped on the cube and lost half of your health")
                 player.health -= 1
             }
         }
     }
 }
+
+squareWithCube
+squareWithTreasure
 player.currentRoom!
 playerCanMoveTo(player.currentRoom!)
+movePlayerTo(6)
+
+
+
 
 
 
