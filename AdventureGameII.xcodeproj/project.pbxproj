@@ -28,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27CB6F921A6B5414000E9E3C /* MatrixGridGenerator.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MatrixGridGenerator.playground; sourceTree = "<group>"; };
 		27FC4AA01A6B129E00F28A2C /* AdventureGameII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdventureGameII.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FC4AA41A6B129E00F28A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27FC4AA51A6B129E00F28A2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +43,7 @@
 		27FC4AC61A6B12E600F28A2C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		27FC4AC81A6B12EC00F28A2C /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		27FC4ACA1A6B1F2200F28A2C /* CheckersGame.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CheckersGame.playground; sourceTree = "<group>"; };
+		27FC4ACB1A6B4C5C00F28A2C /* ScratchPad.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ScratchPad.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,8 @@
 				27FC4AAE1A6B129E00F28A2C /* LaunchScreen.xib */,
 				27FC4AC51A6B12BD00F28A2C /* AdventureGameI.playground */,
 				27FC4ACA1A6B1F2200F28A2C /* CheckersGame.playground */,
+				27CB6F921A6B5414000E9E3C /* MatrixGridGenerator.playground */,
+				27FC4ACB1A6B4C5C00F28A2C /* ScratchPad.playground */,
 				27FC4AA31A6B129E00F28A2C /* Supporting Files */,
 			);
 			path = AdventureGameII;

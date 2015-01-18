@@ -1,4 +1,6 @@
 import Foundation
+
+
 enum PlayerColor:String {
     
     case None = "-"
