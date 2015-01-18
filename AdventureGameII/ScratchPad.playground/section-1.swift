@@ -56,7 +56,10 @@ gameBoard.squareType.description
 
 func setupGameBoard() -> (Int,Int,Int) {
     // Add Treasure to random room
-    let squareWithTreasure = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
+    var squareWithTreasure = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
+    while squareWithTreasure == 0 {
+        squareWithTreasure = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
+    }
     
     // Add cube to random room
     var squareWithCube = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
@@ -66,7 +69,7 @@ func setupGameBoard() -> (Int,Int,Int) {
     
     // Add player to random room
     player.currentRoom = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
-    while  player.currentRoom == squareWithTreasure || player.currentRoom == squareWithCube {
+    while  player.currentRoom == squareWithTreasure || player.currentRoom == squareWithCube || player.currentRoom == 0 {
          player.currentRoom = Int(arc4random_uniform(UInt32(gameBoard.grid.count)))
     }
     return (squareWithTreasure, squareWithCube,  player.currentRoom!)
@@ -74,30 +77,30 @@ func setupGameBoard() -> (Int,Int,Int) {
 
 let treasureRoom = setupGameBoard().0
 let cubeRoom = setupGameBoard().1
-var playerPosition = setupGameBoard().2
+player.currentRoom! = setupGameBoard().2
 var allowedMoves = [Int]()
 
 // MARK: Setup Game Logic Functions
 
 func playerCanMoveTo(playerPosition: Int) -> [Int] {
-    // Can move right? (forward by 1?)
+    // Can move right? ➡︎ (forward by 1?)
 
-    if playerPosition < gameBoard.grid.count {
+    if playerPosition < gameBoard.grid.count && playerPosition % gameBoard.columns != 0 {
         allowedMoves.append(playerPosition + 1)
     }
     
-    // Can move left (backwards by 1?)
-    if playerPosition > 1 {
+    // Can move left ⬅︎ (backwards by 1?)
+    if playerPosition > 1 && ((playerPosition + 3) % gameBoard.columns != 0){
         allowedMoves.append(playerPosition - 1)
     }
 
-    // Can move down one row
+    // Can move down ⬇︎ one row
     if playerPosition <= (gameBoard.grid.count - gameBoard.columns) {
         allowedMoves.append(playerPosition + gameBoard.columns)
     }
  
-    // Can move up one row
-    if playerPosition > (gameBoard.grid.count - gameBoard.columns) {
+    // Can move up ⬆︎ one row
+    if playerPosition > (gameBoard.columns) {
         allowedMoves.append(playerPosition - gameBoard.columns)
     }
     return allowedMoves
@@ -117,6 +120,7 @@ func moveIsAllowed (allowedMoves: [Int], moveTo: Int) -> Bool {
 func movePlayerTo(room:Int) {
     // Check if move is valid
     if moveIsAllowed(allowedMoves, room) {
+        player.currentRoom = room
         for room in allowedMoves {
             if room == treasureRoom {
                 println("YOU WIN - TREASURE FOUND!")
@@ -130,6 +134,11 @@ func movePlayerTo(room:Int) {
         }
     }
 }
+player.currentRoom!
+playerCanMoveTo(player.currentRoom!)
+
+
+
 
 
 
